@@ -1,3 +1,9 @@
+import Layout from "../../components/Layout/Layout";
+
 export default function UpcomingRides() {
-  return <div>UpcomingRides</div>;
+  return (
+    <Layout>
+      <div>UpcomingRides</div>
+    </Layout>
+  );
 }

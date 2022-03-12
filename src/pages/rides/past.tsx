@@ -1,3 +1,9 @@
+import Layout from "../../components/Layout/Layout";
+
 export default function PastRides() {
-  return <div>PastRides</div>;
+  return (
+    <Layout>
+      <div>PastRides</div>
+    </Layout>
+  );
 }

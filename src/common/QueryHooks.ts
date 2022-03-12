@@ -3,22 +3,22 @@ type queryType<T> = {
   other?: any[];
 };
 
-type userType = {
+export type userType = {
   station_code: number;
   name: string;
-  profile_key: string;
+  url: string;
 };
 export const useUser = (): queryType<userType> => {
   return {
     data: {
       station_code: 40,
       name: "Dhruv Singh",
-      profile_key: "none",
+      url: "none",
     },
   };
 };
 
-type rideType = {
+export type rideType = {
   id: string;
   origin_station_code: number;
   station_path: number[];

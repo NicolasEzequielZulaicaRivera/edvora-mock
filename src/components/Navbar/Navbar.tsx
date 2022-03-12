@@ -1,0 +1,26 @@
+import Image from "next/image";
+import { userType } from "../../common/QueryHooks";
+import styles from "./Navbar.module.scss";
+
+type navbarProps = {
+  user: userType;
+};
+
+const Navbar = ({ user }: navbarProps) => {
+  return (
+    <div className={styles.Navbar}>
+      <div className={styles.title}>Edvora</div>
+      <div>
+        <div>{user.name}</div>
+        <Image
+          src={user.url}
+          alt={`${user.name}'s profile picture`}
+          width="44px"
+          height="44px"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

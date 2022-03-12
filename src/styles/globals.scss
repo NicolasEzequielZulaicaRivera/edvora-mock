@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: #fff;
+  background-color: #292929;
 }
 
 a {
@@ -13,4 +15,29 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+// Fonts --------------------------------------------------
+
+// SF Pro Display - https://fontsfree.net/page/2?s=SF+Pro+Display
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SFProDisplay/SFProDisplay-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SFProDisplay/SFProDisplay-Semibold.ttf");
+  font-style: medium;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SFProDisplay/SFProDisplay-Bold.ttf");
+  font-style: medium;
+  font-weight: 700;
+  font-display: swap;
 }

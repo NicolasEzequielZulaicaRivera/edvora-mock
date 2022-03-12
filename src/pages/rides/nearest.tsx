@@ -1,3 +1,9 @@
+import Layout from "../../components/Layout/Layout";
+
 export default function NearestRides() {
-  return <div>NearestRides</div>;
+  return (
+    <Layout>
+      <div>NearestRides</div>
+    </Layout>
+  );
 }

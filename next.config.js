@@ -7,6 +7,9 @@ const nextConfig = {
       { source: "/rides", destination: "/rides/nearest", permanent: false },
     ];
   },
+  images: {
+    domains: ["picsum.photos"],
+  },
 };
 
 module.exports = nextConfig;
