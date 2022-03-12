@@ -1,8 +1,11 @@
+import { getInitialProps } from "../../common/common";
 import Layout from "../../components/Layout/Layout";
 
-export default function PastRides() {
+export const getServerSideProps = async () => getInitialProps();
+
+export default function PastRides({ initialRides, initialUser }) {
   return (
-    <Layout>
+    <Layout initialRides={initialRides} initialUser={initialUser}>
       <div>PastRides</div>
     </Layout>
   );
