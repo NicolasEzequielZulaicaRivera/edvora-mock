@@ -13,4 +13,21 @@
     font-weight: 700;
     font-size: 36px;
   }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    .name {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
 }

@@ -10,9 +10,10 @@ const Navbar = ({ user }: navbarProps) => {
   return (
     <div className={styles.Navbar}>
       <div className={styles.title}>Edvora</div>
-      <div>
-        <div>{user.name}</div>
+      <div className={styles.user}>
+        <div className={styles.name}>{user.name}</div>
         <Image
+          className={styles.image}
           src={user.url}
           alt={`${user.name}'s profile picture`}
           width="44px"
