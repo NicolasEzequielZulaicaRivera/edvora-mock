@@ -1,0 +1,70 @@
+.Navbar {
+  width: 100%;
+  background-color: #101010;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+  padding: 0 43px;
+
+  .title {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    .name {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+}
+
+.SecondaryNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 81px;
+  padding: 0 43px;
+
+  .pages {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    .link {
+      position: relative;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      color: #d0cbcb;
+      padding: 6px 0;
+      border-bottom: 2px solid #d0cbcb00;
+
+      &.active {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+      }
+    }
+  }
+
+  .filters {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

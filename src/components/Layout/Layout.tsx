@@ -1,4 +1,5 @@
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navigation/Navbar";
+import SecondaryNavigation from "../Navigation/SecondaryNavigation";
 
 const Layout = ({ children }) => {
   const mockUser = {
@@ -9,6 +10,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar user={mockUser} />
+      <SecondaryNavigation />
       <main>{children}</main>
     </div>
   );
