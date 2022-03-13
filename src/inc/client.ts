@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { MouseEventHandler } from "react";
 import { filterType } from "./RidesContext";
 import { rideType, stateType, userType } from "./types";
 
@@ -67,5 +68,26 @@ export const processRides = (
     past,
     upcoming,
     states,
+  };
+};
+
+export const listInputActions = (
+  handleChange: MouseEventHandler<HTMLInputElement>
+) => {
+  const onChange = (event) => {
+    if (!event.nativeEvent.inputType) {
+      event.target.blur();
+    }
+    handleChange(event);
+  };
+
+  const clear = (e) => {
+    e.target.value = "";
+  };
+
+  return {
+    onChange,
+    onClick: clear,
+    onFocus: clear,
   };
 };

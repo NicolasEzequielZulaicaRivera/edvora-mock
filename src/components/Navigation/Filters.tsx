@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { listInputActions } from "../../inc/common";
+import { listInputActions } from "../../inc/client";
 import RidesContext from "../../inc/RidesContext";
 import { stateType } from "../../inc/types";
 import styles from "./Navbar.module.scss";
