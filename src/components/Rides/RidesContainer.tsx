@@ -18,7 +18,7 @@ const RidesContainer = ({ rides }: RidesContainerProps) => {
   return (
     <div className={styles.RidesContainer}>
       {rides?.map((ride, i) => (
-        <RideCard key={ride?.id ?? i} ride={ride} />
+        <RideCard key={i + " " + ride?.id} ride={ride} />
       )) ?? <Loading />}
     </div>
   );
