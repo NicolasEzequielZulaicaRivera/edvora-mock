@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
+import { filterType } from "./RidesContext";
 import { rideType, stateType, userType } from "./types";
 
 export const processRides = (
   rides: rideType[],
-  user: userType
+  user: userType,
+  filters?: filterType
 ): {
   nearest?: rideType[];
   past?: rideType[];
@@ -11,6 +13,25 @@ export const processRides = (
   states?: stateType[];
 } => {
   if (!rides) return {};
+
+  const states: stateType[] = rides.reduce((states, ride) => {
+    let state: stateType = states.find((state) => state.name === ride.state);
+    if (state && !state?.cities.includes(ride.city)) {
+      state.cities = [...(state.cities ?? []), ride.city];
+    } else {
+      states.push({ name: ride.state, cities: [ride.city] });
+    }
+
+    return states;
+  }, [] as stateType[]);
+
+  if (filters) {
+    rides = rides.filter((ride) => {
+      if (filters.state && ride.state !== filters.state) return false;
+      if (filters.city && ride.city !== filters.city) return false;
+      return true;
+    });
+  }
 
   const userStation = user?.station_code;
 
@@ -40,17 +61,6 @@ export const processRides = (
     .sort((a, b) => dayjs(a.date).diff(dayjs(b.date)));
 
   // info: rides that take place in the exact moment are neither past nor upcoming
-
-  const states: stateType[] = rides.reduce((states, ride) => {
-    let state: stateType = states.find((state) => state.name === ride.state);
-    if (state) {
-      state.cities = [...(state.cities ?? []), ride.city];
-    } else {
-      states.push({ name: ride.state, cities: [ride.city] });
-    }
-
-    return states;
-  }, [] as stateType[]);
 
   return {
     nearest,
