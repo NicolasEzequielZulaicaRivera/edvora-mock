@@ -15,3 +15,8 @@ export type rideType = {
   city: string;
   distance?: number;
 };
+
+export type stateType = {
+  name: string;
+  cities: string[];
+};

@@ -1,4 +1,5 @@
 import ActiveLink from "./ActiveLink";
+import Filters from "./Filters";
 import styles from "./Navbar.module.scss";
 
 export type countsType = {
@@ -27,9 +28,7 @@ const SecondaryNavigation = ({ counts }: SecondaryNavigationProps) => {
           <a className={styles.link}>Past rides {pastCount}</a>
         </ActiveLink>
       </div>
-      <div className={styles.filters}>
-        <span className="material-icons">sort</span>Filters
-      </div>
+      <Filters />
     </div>
   );
 };

@@ -60,11 +60,81 @@
   }
 
   .filters {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    position: relative;
+    height: 22px;
+    .wrap {
+      z-index: 100;
+      position: absolute;
+      right: 0;
+      top: -23px;
+      padding: 23px 30px;
+      border-radius: 15px;
+
+      max-width: 97px;
+      max-height: 40px;
+      overflow: hidden;
+
+      .label {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 12.5px;
+        width: 168.45px;
+        height: 37.5px;
+        padding: 0 12px;
+        background: #232323;
+        border-radius: 4.68775px;
+
+        input {
+          appearance: none;
+          background-color: #0000;
+          border: none;
+          display: inline-block;
+          outline: none;
+          color: #fff;
+        }
+        input::-webkit-calendar-picker-indicator {
+          display: none;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        i {
+          margin-left: -100%;
+          pointer-events: none;
+        }
+      }
+
+      hr {
+        margin-bottom: 20px;
+        margin-top: 12px;
+        border: none;
+        border-bottom: 1px solid #cbcbcb;
+      }
+
+      &.open {
+        background-color: #131313;
+        max-width: 228px;
+        max-height: 190px;
+
+        .label {
+          font-weight: 300;
+          color: #a5a5a5;
+          i {
+            display: none;
+          }
+        }
+      }
+      transition: all 0.3s ease-in-out;
+    }
   }
 }

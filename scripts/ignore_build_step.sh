@@ -6,7 +6,7 @@ if ! [[ "$VERCEL_ENV" == "production" ]] ; then
 fi
 echo "✅ - Production env"
 
-if ! [[ `git status --porcelain | grep "src/"` ]] ; then
+if ! [[ `git diff-tree --name-only HEAD | grep "src/"` ]] ; then
   echo "🛑 - Build cancelled - No changes in src"
   exit 0;
 fi
