@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { formatDate } from "../../inc/common";
 import { rideType } from "../../inc/types";
 import KeyValueSection from "../common/KeyValueSection";
 import styles from "./Rides.module.scss";
@@ -21,7 +22,10 @@ const RideCard = ({ ride }: RideCardProps) => {
           { key: "Ride Id : ", value: ride?.id },
           { key: "Origin Station : ", value: ride?.origin_station_code },
           { key: "Station Path : ", value: JSON.stringify(ride?.station_path) },
-          { key: "Date : ", value: ride?.date },
+          {
+            key: "Date : ",
+            value: formatDate(ride?.date),
+          },
           { key: "Distance : ", value: ride?.distance },
         ]}
         className={styles.keyValueSection}
