@@ -16,6 +16,7 @@ export type rideType = {
   map_url: string;
   state: string;
   city: string;
+  distance?: number;
 };
 
 // Enabling SSR will make pages return with data

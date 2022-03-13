@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { getInitialProps } from "../../common/common";
+import RidesContext from "../../common/RidesContext";
 import Layout from "../../components/Layout/Layout";
+import RidesContainer from "../../components/Rides/RidesContainer";
 
 export const getServerSideProps = async () => getInitialProps();
 
 export default function UpcomingRides({ initialRides, initialUser }) {
+  const [{ upcoming }] = useContext(RidesContext);
+
   return (
     <Layout initialRides={initialRides} initialUser={initialUser}>
-      <div>UpcomingRides</div>
+      <RidesContainer rides={upcoming} />
     </Layout>
   );
 }
