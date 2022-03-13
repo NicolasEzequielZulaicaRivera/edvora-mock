@@ -1,5 +1,6 @@
-import { rideType } from "../../common/common";
+import { rideType } from "../../inc/types";
 import RideCard from "./RideCard";
+import styles from "./Rides.module.scss";
 
 type RidesContainerProps = {
   rides: rideType[];
@@ -15,7 +16,7 @@ const Loading = () => {
 
 const RidesContainer = ({ rides }: RidesContainerProps) => {
   return (
-    <div>
+    <div className={styles.RidesContainer}>
       {rides?.map((ride, i) => (
         <RideCard key={ride?.id ?? i} ride={ride} />
       )) ?? <Loading />}

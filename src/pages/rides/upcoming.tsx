@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { getInitialProps } from "../../common/common";
-import RidesContext from "../../common/RidesContext";
+import { getInitialProps } from "../../inc/server";
+import RidesContext from "../../inc/RidesContext";
 import Layout from "../../components/Layout/Layout";
 import RidesContainer from "../../components/Rides/RidesContainer";
 

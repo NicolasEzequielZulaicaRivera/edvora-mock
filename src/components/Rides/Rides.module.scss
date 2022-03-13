@@ -1,0 +1,50 @@
+.RidesContainer {
+  padding: 0 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+
+  .RideCard {
+    background-color: #171717;
+    position: relative;
+    padding: 22px 20px 28px 29px;
+    border-radius: 10px;
+    display: flex;
+
+    .image {
+      width: 296px;
+      height: 148px;
+      border-radius: 5px;
+    }
+
+    .keyValueSection {
+      padding: 0 44px;
+      .row {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        margin: 8px 0;
+        .key {
+          color: #cfcfcf;
+        }
+      }
+    }
+
+    .details {
+      position: absolute;
+      top: 22px;
+      right: 20px;
+      display: flex;
+      gap: 24px;
+      > div {
+        background: #000;
+        border-radius: 16px;
+        height: fit-content;
+        padding: 4px 10px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+  }
+}

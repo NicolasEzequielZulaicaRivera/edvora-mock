@@ -10,7 +10,7 @@ export const processRides = (
 } => {
   if (!rides) return {};
 
-  const userStation = user.station_code;
+  const userStation = user?.station_code;
 
   // TODO
   // nearest, past, upcoming

@@ -1,10 +1,12 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
-import { rides_endpoint, user_endpoint } from "../../common/common";
-import { processRides } from "../../common/rides";
-import RidesContext from "../../common/RidesContext";
+import { rides_endpoint, user_endpoint } from "../../inc/common";
+import { processRides } from "../../inc/client";
+import RidesContext from "../../inc/RidesContext";
 import Navbar from "../Navigation/Navbar";
-import SecondaryNavigation from "../Navigation/SecondaryNavigation";
+import SecondaryNavigation, {
+  countsType,
+} from "../Navigation/SecondaryNavigation";
 
 const fetcher = async (url) => fetch(url).then(async (res) => res.json());
 
@@ -18,9 +20,12 @@ const Layout = ({ children, initialRides, initialUser }) => {
     fallbackData: initialUser,
   });
 
-  // This could be done async
-  // Look into Suspense?, as we're only interested in showing a loading screen
-  // would have to pass rides to the context & calculate this on the pages though
+  const [ridesCounts, setRidesCounts] = useState<countsType>({});
+
+  // This could slow page load . O(N logN) . solutions:
+  // - make async: wouldn't hold page load . cant memoize (*easily)
+  // - use Suspense: would be easy to show loading .  need to pass rides to the context & calculate this on the pages
+  // - use a web worker: async & memoized . kinda overkill . would add to bundle size . would keep memo between page switches
   const processedRides = useMemo(
     () => processRides(rides?.data, user?.data),
     [rides?.data, user?.data]
@@ -31,12 +36,16 @@ const Layout = ({ children, initialRides, initialUser }) => {
       ...context,
       ...processedRides,
     }));
+    setRidesCounts({
+      upcoming: processedRides?.upcoming?.length,
+      past: processedRides?.past?.length,
+    });
   }, [processedRides, setRidesContext]);
 
   return (
     <div>
       <Navbar user={user?.data} />
-      <SecondaryNavigation />
+      <SecondaryNavigation counts={ridesCounts} />
       <main>{children}</main>
     </div>
   );

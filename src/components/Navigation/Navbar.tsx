@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { userType } from "../../common/common";
+import { userType } from "../../inc/types";
 import styles from "./Navbar.module.scss";
 
 type navbarProps = {

@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { rideType } from "./common";
+import { rideType } from "./types";
 
 type ridesContextStateType = {
   filters: {

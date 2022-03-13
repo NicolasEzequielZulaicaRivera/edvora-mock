@@ -1,4 +1,4 @@
-import RidesContext, { useRidesContextState } from "../common/RidesContext";
+import RidesContext, { useRidesContextState } from "../inc/RidesContext";
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
