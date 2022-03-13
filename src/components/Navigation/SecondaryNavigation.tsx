@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import RidesContext from "../../inc/RidesContext";
 import ActiveLink from "./ActiveLink";
 import Filters from "./Filters";
 import styles from "./Navbar.module.scss";
@@ -12,6 +14,9 @@ type SecondaryNavigationProps = {
 };
 
 const SecondaryNavigation = ({ counts }: SecondaryNavigationProps) => {
+  const [ridesContext] = useContext(RidesContext);
+  const states = ridesContext.states;
+
   const upcomingCount = counts?.upcoming ? `(${counts.upcoming})` : "";
   const pastCount = counts?.past ? `(${counts.past})` : "";
 
@@ -28,7 +33,7 @@ const SecondaryNavigation = ({ counts }: SecondaryNavigationProps) => {
           <a className={styles.link}>Past rides {pastCount}</a>
         </ActiveLink>
       </div>
-      <Filters />
+      <Filters states={states} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { rideType } from "./types";
+import { rideType, stateType } from "./types";
 
 type ridesContextStateType = {
   filters: {
@@ -9,6 +9,8 @@ type ridesContextStateType = {
   nearest?: rideType[];
   past?: rideType[];
   upcoming?: rideType[];
+
+  states?: stateType[];
 };
 
 const initialState: ridesContextStateType = {

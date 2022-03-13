@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { rideType, userType } from "./types";
+import { rideType, stateType, userType } from "./types";
 
 export const processRides = (
   rides: rideType[],
@@ -8,6 +8,7 @@ export const processRides = (
   nearest?: rideType[];
   past?: rideType[];
   upcoming?: rideType[];
+  states?: stateType[];
 } => {
   if (!rides) return {};
 
@@ -40,9 +41,21 @@ export const processRides = (
 
   // info: rides that take place in the exact moment are neither past nor upcoming
 
+  const states: stateType[] = rides.reduce((states, ride) => {
+    let state: stateType = states.find((state) => state.name === ride.state);
+    if (state) {
+      state.cities = [...(state.cities ?? []), ride.city];
+    } else {
+      states.push({ name: ride.state, cities: [ride.city] });
+    }
+
+    return states;
+  }, [] as stateType[]);
+
   return {
     nearest,
     past,
     upcoming,
+    states,
   };
 };

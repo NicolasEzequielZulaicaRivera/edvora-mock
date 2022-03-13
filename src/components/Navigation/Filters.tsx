@@ -4,36 +4,16 @@ import RidesContext from "../../inc/RidesContext";
 import { stateType } from "../../inc/types";
 import styles from "./Navbar.module.scss";
 
-const states: stateType[] = [
-  {
-    name: "Alabama",
-    cities: ["Birmingham", "Montgomery", "Mobile", "Huntsville", "Tuscaloosa"],
-  },
-  {
-    name: "Alaska",
-    cities: ["Anchorage", "Fairbanks", "Juneau", "Sitka"],
-  },
-  {
-    name: "Arizona",
-    cities: ["Phoenix", "Tucson", "Mesa", "Chandler", "Glendale", "Scottsdale"],
-  },
-  {
-    name: "Arkansas",
-    cities: [
-      "Little Rock",
-      "Fort Smith",
-      "Fayetteville",
-      "Springdale",
-      "Jonesboro",
-    ],
-  },
-];
+type FiltersProps = {
+  states: stateType[];
+};
 
-const Filters = () => {
+const Filters = ({ states }: FiltersProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
 
   const [ridesContext, setRidesContext] = useContext(RidesContext);
+
   const filters = ridesContext.filters;
   const setFilters = useCallback(
     (filters) => setRidesContext((context) => ({ ...context, filters })),
@@ -41,7 +21,7 @@ const Filters = () => {
   );
 
   const getCities = () =>
-    states.reduce((acc, state) => {
+    states?.reduce((acc, state) => {
       return [...acc, ...state?.cities];
     }, []);
   const [cities, setCities] = useState<string[]>(getCities());
