@@ -10,13 +10,14 @@ type RideCardProps = {
 const RideCard = ({ ride }: RideCardProps) => {
   return (
     <div className={styles.RideCard}>
-      <Image
-        className={styles.image}
-        src={ride?.map_url}
-        alt={`ride ${ride?.id} map`}
-        width="296px"
-        height="148px"
-      />
+      <div className={styles.image}>
+        <Image
+          src={ride?.map_url}
+          alt={`ride ${ride?.id} map`}
+          width="296px"
+          height="148px"
+        />
+      </div>
       <KeyValueSection
         data={[
           { key: "Ride Id : ", value: ride?.id },
