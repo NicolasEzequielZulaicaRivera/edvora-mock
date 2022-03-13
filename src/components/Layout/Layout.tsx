@@ -28,7 +28,7 @@ const Layout = ({ children, initialRides, initialUser }) => {
   // - use Suspense: would be easy to show loading .  need to pass rides to the context & calculate this on the pages
   // - use a web worker: async & memoized . kinda overkill . would add to bundle size . would keep memo between page switches
   const processedRides = useMemo(
-    () => processRides([...rides?.data], user?.data, filters),
+    () => processRides([...(rides?.data ?? [])], user?.data, filters),
     [rides?.data, user?.data, filters]
   );
 
