@@ -11,7 +11,8 @@ import SecondaryNavigation, {
 const fetcher = async (url) => fetch(url).then(async (res) => res.json());
 
 const Layout = ({ children, initialRides, initialUser }) => {
-  const [, setRidesContext] = useContext(RidesContext);
+  const [ridesContext, setRidesContext] = useContext(RidesContext);
+  const filters = ridesContext.filters;
 
   const rides = useSWR(rides_endpoint, fetcher, {
     fallbackData: initialRides,

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { listInputActions } from "../../inc/common";
 import RidesContext from "../../inc/RidesContext";
 import { stateType } from "../../inc/types";
@@ -35,32 +35,50 @@ const Filters = () => {
 
   const [ridesContext, setRidesContext] = useContext(RidesContext);
   const filters = ridesContext.filters;
-  const setFilters = (filters) =>
-    setRidesContext((context) => ({ ...context, filters }));
+  const setFilters = useCallback(
+    (filters) => setRidesContext((context) => ({ ...context, filters })),
+    [setRidesContext]
+  );
 
   const getCities = () =>
-    filters.state
-      ? states[filters.state]
-      : states.reduce((acc, state) => {
-          return [...acc, ...state?.cities];
-        }, []);
+    states.reduce((acc, state) => {
+      return [...acc, ...state?.cities];
+    }, []);
   const [cities, setCities] = useState<string[]>(getCities());
   const cityRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const state = states.find((state) => state.name === filters.state);
-    if (state) {
-      setCities(state.cities);
+    if (!filters.state) {
+      setCities(getCities());
       cityRef.current.value = "";
+      return;
     }
-  }, [filters.state, setCities]);
+
+    const state = states.find((state) => state.name === filters.state);
+    if (state) setCities(state.cities);
+    if (!filters.city) cityRef.current.value = "";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters.state, setCities, setFilters]);
 
   const handleStateChange = (e: any) => {
-    setFilters({ ...filters, state: e.target.value });
+    const value = e.target.value;
+    if (value === "None" || value === "") {
+      setFilters({});
+    } else {
+      setFilters({
+        state: value,
+        city: states[value]?.cities.includes(filters.city) ? filters.city : "",
+      });
+    }
   };
 
   const handleCityChange = (e: any) => {
-    console.log(e.target.value);
+    const value = e.target.value;
+    if (value === "None" || value === "") {
+      setFilters({ ...filters, city: undefined });
+    } else {
+      setFilters({ ...filters, city: e.target.value });
+    }
   };
 
   // info: onMouseLeave could be replaced by onBlur(*)
@@ -79,10 +97,12 @@ const Filters = () => {
           <input
             placeholder="State"
             list="filter_state_list"
+            defaultValue={filters.state || ""}
             {...listInputActions(handleStateChange)}
           />
           <i className="material-icons">arrow_drop_down</i>
           <datalist id="filter_state_list">
+            <option value="None" />
             {states?.map((state, i) => (
               <option key={i + " " + state.name} value={state.name} />
             ))}
@@ -92,11 +112,13 @@ const Filters = () => {
           <input
             placeholder="City"
             list="filter_city_list"
+            defaultValue={filters.city || ""}
             {...listInputActions(handleCityChange)}
             ref={cityRef}
           />
           <i className="material-icons">arrow_drop_down</i>
           <datalist id="filter_city_list">
+            <option value="None" />
             {cities?.map((city, i) => (
               <option key={i + " " + city} value={city} />
             ))}

@@ -90,7 +90,6 @@
         margin-top: 12.5px;
         width: 168.45px;
         height: 37.5px;
-        padding: 0 12px;
         background: #232323;
         border-radius: 4.68775px;
 
@@ -98,6 +97,7 @@
           appearance: none;
           background-color: #0000;
           border: none;
+          padding: 0 12px;
           display: inline-block;
           outline: none;
           color: #fff;
@@ -110,6 +110,7 @@
 
         i {
           margin-left: -100%;
+          padding-right: 3px;
           pointer-events: none;
         }
       }
