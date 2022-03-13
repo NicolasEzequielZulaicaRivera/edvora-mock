@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
-export const rides_endpoint = "https://assessment.api.vweb.app/rides";
-export const user_endpoint = "https://assessment.api.vweb.app/user";
+export const rides_endpoint = "/api/rides";
+export const user_endpoint = "/api/user";
 
 var advancedFormat = require("dayjs/plugin/advancedFormat");
 dayjs.extend(advancedFormat);

@@ -1,4 +1,5 @@
-echo "VERCEL_ENV: $VERCEL_ENV"
+echo "⏩ - Forced build"
+exit 1;
 
 if ! [[ "$VERCEL_ENV" == "production" ]] ; then
   echo "🛑 - Build cancelled - Not a production env"
